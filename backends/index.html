@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Debargha Ganguly" /><link rel="canonical" href="https://debarghaG.github.io/proofofthought/backends/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Backends - ProofOfThought</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Backends";
+        var mkdocs_page_input_path = "backends.md";
+        var mkdocs_page_url = "/proofofthought/backends/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ProofOfThought
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../foreword/">Foreword</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dsl-specification/">DSL Specification</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Backends</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#smt2backend">SMT2Backend</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#execution">Execution</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#result-parsing">Result Parsing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prompt-template">Prompt Template</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#file-extension">File Extension</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#json-backend">JSON Backend</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#execution-pipeline">Execution Pipeline</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#z3jsoninterpreter-pipeline">Z3JSONInterpreter Pipeline</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prompt-template_1">Prompt Template</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#file-extension_1">File Extension</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#benchmark-performance">Benchmark Performance</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-differences">Implementation Differences</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#program-generation">Program Generation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#timeout-configuration">Timeout Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backend-selection-code">Backend Selection Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prompt-selection">Prompt Selection</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../examples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarks/">Benchmarks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postprocessors/">Postprocessors</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ProofOfThought</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Backends</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/debarghaG/proofofthought/edit/main/docs/backends.md">Edit on debarghaG/proofofthought</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="backends">Backends<a class="headerlink" href="#backends" title="Permanent link">&para;</a></h1>
+<p>ProofOfThought supports two execution backends for Z3: the standard SMT-LIB 2.0 format and a custom JSON DSL.</p>
+<h2 id="smt2backend">SMT2Backend<a class="headerlink" href="#smt2backend" title="Permanent link">&para;</a></h2>
+<p>The SMT2 backend leverages Z3's standard command-line interface.</p>
+<p><strong>Implementation:</strong> <code>z3adapter/backends/smt2_backend.py</code></p>
+<h3 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">z3_path</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;-T:</span><span class="si">{</span><span class="n">timeout_seconds</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">program_path</span><span class="p">])</span>
+</code></pre></div>
+
+<p>The execution process involves:</p>
+<ul>
+<li>Running Z3 as a CLI subprocess with a timeout flag</li>
+<li>Applying a hard timeout of <code>timeout_seconds + 10</code> to prevent hanging</li>
+<li>Capturing output from both stdout and stderr</li>
+</ul>
+<h3 id="result-parsing">Result Parsing<a class="headerlink" href="#result-parsing" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">sat_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?&lt;!un)\bsat\b&quot;</span>      <span class="c1"># Negative lookbehind to exclude &quot;unsat&quot;</span>
+<span class="n">unsat_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\bunsat\b&quot;</span>
+</code></pre></div>
+
+<p>The parser counts occurrences in Z3 output and applies the following answer logic:</p>
+<ul>
+<li><code>sat_count &gt; 0, unsat_count == 0</code> → <code>True</code></li>
+<li><code>unsat_count &gt; 0, sat_count == 0</code> → <code>False</code></li>
+<li>Otherwise → <code>None</code></li>
+</ul>
+<h3 id="prompt-template">Prompt Template<a class="headerlink" href="#prompt-template" title="Permanent link">&para;</a></h3>
+<p>The prompt template guides LLM program generation.</p>
+<p><strong>Source:</strong> <code>z3adapter/reasoning/smt2_prompt_template.py</code></p>
+<p>The template provides instructions for generating SMT-LIB 2.0 programs with these key requirements:
+- All commands as S-expressions: <code>(command args...)</code>
+- Declare sorts before use
+- Single <code>(check-sat)</code> per program
+- Semantic: <code>sat</code> = constraint satisfiable, <code>unsat</code> = contradicts knowledge base</p>
+<h3 id="file-extension">File Extension<a class="headerlink" href="#file-extension" title="Permanent link">&para;</a></h3>
+<p><code>.smt2</code></p>
+<h2 id="json-backend">JSON Backend<a class="headerlink" href="#json-backend" title="Permanent link">&para;</a></h2>
+<p>The JSON backend uses Z3's Python API for direct programmatic access.</p>
+<p><strong>Implementation:</strong> <code>z3adapter/backends/json_backend.py</code></p>
+<h3 id="execution-pipeline">Execution Pipeline<a class="headerlink" href="#execution-pipeline" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">interpreter</span> <span class="o">=</span> <span class="n">Z3JSONInterpreter</span><span class="p">(</span><span class="n">program_path</span><span class="p">,</span> <span class="n">verify_timeout</span><span class="p">,</span> <span class="n">optimize_timeout</span><span class="p">)</span>
+<span class="n">interpreter</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">sat_count</span><span class="p">,</span> <span class="n">unsat_count</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_verification_counts</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="z3jsoninterpreter-pipeline">Z3JSONInterpreter Pipeline<a class="headerlink" href="#z3jsoninterpreter-pipeline" title="Permanent link">&para;</a></h3>
+<p>The interpreter processes JSON programs through three main stages:</p>
+<p><strong>Step 1: SortManager</strong> (<code>z3adapter/dsl/sorts.py</code>)</p>
+<p>First, the system topologically sorts type definitions to handle dependencies, then creates Z3 sorts:</p>
+<ul>
+<li>Built-in: <code>BoolSort()</code>, <code>IntSort()</code>, <code>RealSort()</code> (pre-defined)</li>
+<li>Custom: <code>DeclareSort(name)</code>, <code>EnumSort(name, values)</code>, <code>BitVecSort(n)</code>, <code>ArraySort(domain, range)</code></li>
+</ul>
+<p>For example, an ArraySort creates dependencies:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IntArray&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ArraySort(IntSort, IntSort)&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>This requires <code>IntSort</code> to be defined first (fortunately, it's built-in) before creating <code>IntArray</code>.</p>
+<p><strong>Step 2: ExpressionParser</strong> (<code>z3adapter/dsl/expressions.py</code>)</p>
+<p>Next, the parser evaluates logical expressions from strings using a restricted <code>eval()</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">safe_globals</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">Z3_OPERATORS</span><span class="p">,</span> <span class="o">**</span><span class="n">functions</span><span class="p">}</span>
+<span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">functions</span><span class="p">,</span> <span class="o">**</span><span class="n">constants</span><span class="p">,</span> <span class="o">**</span><span class="n">variables</span><span class="p">,</span> <span class="o">**</span><span class="n">quantified_vars</span><span class="p">}</span>
+<span class="n">ExpressionValidator</span><span class="o">.</span><span class="n">safe_eval</span><span class="p">(</span><span class="n">expr_str</span><span class="p">,</span> <span class="n">safe_globals</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Only whitelisted operators are permitted:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Z3_OPERATORS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;And&quot;</span><span class="p">,</span> <span class="s2">&quot;Or&quot;</span><span class="p">,</span> <span class="s2">&quot;Not&quot;</span><span class="p">,</span> <span class="s2">&quot;Implies&quot;</span><span class="p">,</span> <span class="s2">&quot;If&quot;</span><span class="p">,</span> <span class="s2">&quot;Distinct&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sum&quot;</span><span class="p">,</span> <span class="s2">&quot;Product&quot;</span><span class="p">,</span> <span class="s2">&quot;ForAll&quot;</span><span class="p">,</span> <span class="s2">&quot;Exists&quot;</span><span class="p">,</span> <span class="s2">&quot;Function&quot;</span><span class="p">,</span> <span class="s2">&quot;Array&quot;</span><span class="p">,</span> <span class="s2">&quot;BitVecVal&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Step 3: Verifier</strong> (<code>z3adapter/verification/verifier.py</code>)</p>
+<p>Finally, the verifier tests each verification condition:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>  <span class="c1"># Adds condition as hypothesis to KB</span>
+<span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="n">sat</span><span class="p">:</span>
+    <span class="n">sat_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">elif</span> <span class="n">result</span> <span class="o">==</span> <span class="n">unsat</span><span class="p">:</span>
+    <span class="n">unsat_count</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+
+<p><strong>Verification Semantics:</strong>
+When calling <code>solver.check(φ)</code>, the system asks: "Is KB ∧ φ satisfiable?"</p>
+<ul>
+<li><strong>SAT</strong>: φ is consistent with the knowledge base (possible scenario)</li>
+<li><strong>UNSAT</strong>: φ contradicts the knowledge base (impossible scenario)</li>
+</ul>
+<h3 id="prompt-template_1">Prompt Template<a class="headerlink" href="#prompt-template_1" title="Permanent link">&para;</a></h3>
+<p>The JSON prompt template is more comprehensive than its SMT2 counterpart.</p>
+<p><strong>Source:</strong> <code>z3adapter/reasoning/prompt_template.py</code></p>
+<p>This 546-line specification of the JSON DSL includes these key sections:</p>
+<p><strong>Sorts:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Person&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DeclareSort&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Functions:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;supports&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Person&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Issue&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BoolSort&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Constants:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;persons&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Person&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;members&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nancy_pelosi&quot;</span><span class="p">]}}</span>
+</code></pre></div>
+
+<p><strong>Variables:</strong>
+Free variables for quantifier binding:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;p&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Person&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Knowledge Base:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;ForAll([p], Implies(is_democrat(p), supports_abortion(p)))&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p><strong>Verifications:</strong>
+The DSL supports three types of verifications:</p>
+<ol>
+<li><strong>Simple constraint:</strong></li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constraint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;supports_abortion(nancy)&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<ol>
+<li><strong>Existential:</strong></li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;exists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Int&quot;</span><span class="p">}],</span><span class="w"> </span><span class="nt">&quot;constraint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x &gt; 0&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<ol>
+<li><strong>Universal:</strong></li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;forall&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Int&quot;</span><span class="p">}],</span>
+<span class="w"> </span><span class="nt">&quot;implies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;antecedent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x &gt; 0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;consequent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x &gt;= 1&quot;</span><span class="p">}}</span>
+</code></pre></div>
+
+<p><strong>Critical constraint:</strong> The prompt enforces a single verification per question to avoid ambiguous results from testing both φ and ¬φ.</p>
+<h3 id="file-extension_1">File Extension<a class="headerlink" href="#file-extension_1" title="Permanent link">&para;</a></h3>
+<p><code>.json</code></p>
+<h2 id="benchmark-performance">Benchmark Performance<a class="headerlink" href="#benchmark-performance" title="Permanent link">&para;</a></h2>
+<p>Performance comparison across datasets reveals notable differences between the backends.</p>
+<p><strong>Results from</strong> <code>experiments_pipeline.py</code> (100 samples per dataset, GPT-5, <code>max_attempts=3</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>SMT2 Accuracy</th>
+<th>JSON Accuracy</th>
+<th>SMT2 Success</th>
+<th>JSON Success</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ProntoQA</td>
+<td>100%</td>
+<td>99%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>FOLIO</td>
+<td>69%</td>
+<td>76%</td>
+<td>99%</td>
+<td>94%</td>
+</tr>
+<tr>
+<td>ProofWriter</td>
+<td>99%</td>
+<td>96%</td>
+<td>99%</td>
+<td>96%</td>
+</tr>
+<tr>
+<td>ConditionalQA</td>
+<td>83%</td>
+<td>76%</td>
+<td>100%</td>
+<td>89%</td>
+</tr>
+<tr>
+<td>StrategyQA</td>
+<td>84%</td>
+<td>68%</td>
+<td>100%</td>
+<td>86%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Success Rate</strong> represents the percentage of queries that complete without error (including both generation and execution).</p>
+<p>Overall, SMT2 achieves higher accuracy on 4 out of 5 datasets, while JSON shows greater success rate variance (86-100% compared to SMT2's 99-100%).</p>
+<h2 id="implementation-differences">Implementation Differences<a class="headerlink" href="#implementation-differences" title="Permanent link">&para;</a></h2>
+<p>The backends differ in several implementation details.</p>
+<h3 id="program-generation">Program Generation<a class="headerlink" href="#program-generation" title="Permanent link">&para;</a></h3>
+<p><strong>SMT2:</strong> Extracts programs from markdown via:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;```smt2\s*([\s\S]*?)\s*```&quot;</span>
+</code></pre></div>
+
+<p><strong>JSON:</strong> Extracts and parses via:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;```json\s*(\{[\s\S]*?\})\s*```&quot;</span>
+<span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div>
+
+<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
+<p>Error handling varies significantly between backends.</p>
+<p><strong>SMT2:</strong>
+- Subprocess timeout → <code>TimeoutExpired</code>
+- Parse errors → regex mismatch → <code>answer=None</code>
+- Z3 errors in stderr → still parsed</p>
+<p><strong>JSON:</strong>
+- JSON parse error → extraction failure
+- Z3 Python API exception → caught in <code>try/except</code>
+- Invalid sort reference → <code>ValueError</code> during SortManager
+- Expression eval error → <code>ValueError</code> during ExpressionParser</p>
+<h3 id="timeout-configuration">Timeout Configuration<a class="headerlink" href="#timeout-configuration" title="Permanent link">&para;</a></h3>
+<p>Timeout handling differs between the two backends.</p>
+<p><strong>SMT2:</strong>
+- Uses a single timeout parameter: <code>verify_timeout</code> (ms)
+- Converts to seconds for Z3 CLI: <code>verify_timeout // 1000</code>
+- Applies a hard subprocess timeout: <code>timeout_seconds + 10</code></p>
+<p><strong>JSON:</strong>
+- Uses two separate timeouts: <code>verify_timeout</code> (ms) and <code>optimize_timeout</code> (ms)
+- Sets timeout via <code>solver.set("timeout", verify_timeout)</code> in Verifier
+- Timeout applies per individual <code>solver.check()</code> call</p>
+<h2 id="backend-selection-code">Backend Selection Code<a class="headerlink" href="#backend-selection-code" title="Permanent link">&para;</a></h2>
+<p>The system selects backends at runtime based on configuration:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">z3adapter.backends.json_backend</span><span class="w"> </span><span class="kn">import</span> <span class="n">JSONBackend</span>
+    <span class="n">backend_instance</span> <span class="o">=</span> <span class="n">JSONBackend</span><span class="p">(</span><span class="n">verify_timeout</span><span class="p">,</span> <span class="n">optimize_timeout</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>  <span class="c1"># smt2</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">z3adapter.backends.smt2_backend</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMT2Backend</span>
+    <span class="n">backend_instance</span> <span class="o">=</span> <span class="n">SMT2Backend</span><span class="p">(</span><span class="n">verify_timeout</span><span class="p">,</span> <span class="n">z3_path</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>File:</strong> <code>z3adapter/reasoning/proof_of_thought.py:78-90</code></p>
+<h2 id="prompt-selection">Prompt Selection<a class="headerlink" href="#prompt-selection" title="Permanent link">&para;</a></h2>
+<p>The appropriate prompt template is chosen based on the selected backend:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">build_prompt</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>  <span class="c1"># smt2</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">build_smt2_prompt</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>File:</strong> <code>z3adapter/reasoning/program_generator.py:78-81</code></p>
+<p>Both prompts include few-shot examples and format specifications. The SMT2 prompt emphasizes S-expression syntax, while the JSON prompt provides detailed guidance on variable scoping and quantifier semantics.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api-reference/" class="btn btn-neutral float-left" title="API Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../examples/" class="btn btn-neutral float-right" title="Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2025 Debargha Ganguly</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/debarghaG/proofofthought" class="fa fa-code-fork" style="color: #fcfcfc"> debarghaG/proofofthought</a>
+        </span>
+    
+    
+      <span><a href="../api-reference/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../examples/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

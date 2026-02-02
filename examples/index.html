@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Debargha Ganguly" /><link rel="canonical" href="https://debarghaG.github.io/proofofthought/examples/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Examples - ProofOfThought</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Examples";
+        var mkdocs_page_input_path = "examples.md";
+        var mkdocs_page_url = "/proofofthought/examples/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ProofOfThought
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../foreword/">Foreword</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dsl-specification/">DSL Specification</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api-reference/">API Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backends/">Backends</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Examples</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-query">Basic Query</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#azure-openai">Azure OpenAI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backend-comparison">Backend Comparison</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#batch-evaluation">Batch Evaluation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#azure-smt2-evaluation">Azure + SMT2 Evaluation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#full-benchmark-suite">Full Benchmark Suite</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#benchmark-script-structure">Benchmark Script Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dataset-format">Dataset Format</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#saving-programs">Saving Programs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-configuration">Advanced Configuration</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../benchmarks/">Benchmarks</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../postprocessors/">Postprocessors</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ProofOfThought</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/debarghaG/proofofthought/edit/main/docs/examples.md">Edit on debarghaG/proofofthought</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
+<p>This page demonstrates common usage patterns through example scripts.</p>
+<p>All examples are located in the <code>examples/</code> directory and should be run from the project root:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>examples/<span class="o">{</span>script<span class="o">}</span>.py
+</code></pre></div>
+
+<h2 id="basic-query">Basic Query<a class="headerlink" href="#basic-query" title="Permanent link">&para;</a></h2>
+<p>The simplest way to use ProofOfThought is through a single query.</p>
+<p><strong>File:</strong> <code>examples/simple_usage.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">z3adapter.reasoning</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProofOfThought</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">))</span>
+<span class="n">pot</span> <span class="o">=</span> <span class="n">ProofOfThought</span><span class="p">(</span><span class="n">llm_client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">pot</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Would Nancy Pelosi publicly denounce abortion?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>  <span class="c1"># False</span>
+</code></pre></div>
+
+<h2 id="azure-openai">Azure OpenAI<a class="headerlink" href="#azure-openai" title="Permanent link">&para;</a></h2>
+<p>For Azure OpenAI deployments, use the provided configuration utility.</p>
+<p><strong>File:</strong> <code>examples/azure_simple_example.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">utils.azure_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_client_config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">z3adapter.reasoning</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProofOfThought</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">get_client_config</span><span class="p">()</span>
+<span class="n">pot</span> <span class="o">=</span> <span class="n">ProofOfThought</span><span class="p">(</span><span class="n">llm_client</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;llm_client&quot;</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">])</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">pot</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Can fish breathe underwater?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>  <span class="c1"># True</span>
+</code></pre></div>
+
+<h2 id="backend-comparison">Backend Comparison<a class="headerlink" href="#backend-comparison" title="Permanent link">&para;</a></h2>
+<p>You can compare how the two backends perform on the same question.</p>
+<p><strong>File:</strong> <code>examples/backend_comparison.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="n">get_client_config</span><span class="p">()</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;Can fish breathe underwater?&quot;</span>
+
+<span class="n">pot_json</span> <span class="o">=</span> <span class="n">ProofOfThought</span><span class="p">(</span><span class="n">llm_client</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;llm_client&quot;</span><span class="p">],</span> <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+<span class="n">pot_smt2</span> <span class="o">=</span> <span class="n">ProofOfThought</span><span class="p">(</span><span class="n">llm_client</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;llm_client&quot;</span><span class="p">],</span> <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;smt2&quot;</span><span class="p">)</span>
+
+<span class="n">result_json</span> <span class="o">=</span> <span class="n">pot_json</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+<span class="n">result_smt2</span> <span class="o">=</span> <span class="n">pot_smt2</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;JSON: </span><span class="si">{</span><span class="n">result_json</span><span class="o">.</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SMT2: </span><span class="si">{</span><span class="n">result_smt2</span><span class="o">.</span><span class="n">answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="batch-evaluation">Batch Evaluation<a class="headerlink" href="#batch-evaluation" title="Permanent link">&para;</a></h2>
+<p>For evaluating multiple questions from a dataset, use the evaluation pipeline.</p>
+<p><strong>File:</strong> <code>examples/batch_evaluation.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">z3adapter.reasoning</span><span class="w"> </span><span class="kn">import</span> <span class="n">EvaluationPipeline</span><span class="p">,</span> <span class="n">ProofOfThought</span>
+
+<span class="n">pot</span> <span class="o">=</span> <span class="n">ProofOfThought</span><span class="p">(</span><span class="n">llm_client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">EvaluationPipeline</span><span class="p">(</span><span class="n">proof_of_thought</span><span class="o">=</span><span class="n">pot</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;results/&quot;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;data/strategyQA_train.json&quot;</span><span class="p">,</span>
+    <span class="n">question_field</span><span class="o">=</span><span class="s2">&quot;question&quot;</span><span class="p">,</span>
+    <span class="n">answer_field</span><span class="o">=</span><span class="s2">&quot;answer&quot;</span><span class="p">,</span>
+    <span class="n">max_samples</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F1 Score: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">f1_score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="azure-smt2-evaluation">Azure + SMT2 Evaluation<a class="headerlink" href="#azure-smt2-evaluation" title="Permanent link">&para;</a></h2>
+<p>This example combines Azure OpenAI with the SMT2 backend for batch evaluation.</p>
+<p><strong>File:</strong> <code>examples/batch_evaluation_smt2_azure.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="n">get_client_config</span><span class="p">()</span>
+
+<span class="n">pot</span> <span class="o">=</span> <span class="n">ProofOfThought</span><span class="p">(</span>
+    <span class="n">llm_client</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;llm_client&quot;</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">],</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;smt2&quot;</span>
+<span class="p">)</span>
+
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">EvaluationPipeline</span><span class="p">(</span><span class="n">proof_of_thought</span><span class="o">=</span><span class="n">pot</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="s2">&quot;data/strategyQA_train.json&quot;</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="full-benchmark-suite">Full Benchmark Suite<a class="headerlink" href="#full-benchmark-suite" title="Permanent link">&para;</a></h2>
+<p>For comprehensive benchmarking, the experiments pipeline runs all datasets with both backends.</p>
+<p><strong>File:</strong> <code>experiments_pipeline.py</code></p>
+<p>This script runs all 5 benchmarks (ProntoQA, FOLIO, ProofWriter, ConditionalQA, StrategyQA) with both backends:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>experiments_pipeline.py
+</code></pre></div>
+
+<p><strong>Implementation details:</strong></p>
+<ul>
+<li>Modifies <code>benchmark/bench_*.py</code> files to set the backend via regex substitution</li>
+<li>Runs each benchmark script as a subprocess with a 1-hour timeout</li>
+<li>Collects metrics from <code>output/{backend}_evaluation_{benchmark}/</code> directories</li>
+<li>Generates a markdown table and updates README.md with results</li>
+</ul>
+<p><strong>Configuration</strong> (<code>experiments_pipeline.py:29-41</code>):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">BENCHMARKS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;prontoqa&quot;</span><span class="p">:</span> <span class="s2">&quot;benchmark/bench_prontoqa.py&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;folio&quot;</span><span class="p">:</span> <span class="s2">&quot;benchmark/bench_folio.py&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;proofwriter&quot;</span><span class="p">:</span> <span class="s2">&quot;benchmark/bench_proofwriter.py&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;conditionalqa&quot;</span><span class="p">:</span> <span class="s2">&quot;benchmark/bench_conditionalqa.py&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;strategyqa&quot;</span><span class="p">:</span> <span class="s2">&quot;benchmark/bench_strategyqa.py&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">BACKENDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;smt2&quot;</span><span class="p">,</span> <span class="s2">&quot;json&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<h2 id="benchmark-script-structure">Benchmark Script Structure<a class="headerlink" href="#benchmark-script-structure" title="Permanent link">&para;</a></h2>
+<p>Individual benchmark scripts follow a common pattern, illustrated here with StrategyQA.</p>
+<p><strong>File:</strong> <code>benchmark/bench_strategyqa.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="n">get_client_config</span><span class="p">()</span>
+
+<span class="n">pot</span> <span class="o">=</span> <span class="n">ProofOfThought</span><span class="p">(</span>
+    <span class="n">llm_client</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;llm_client&quot;</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">],</span>
+    <span class="n">backend</span><span class="o">=</span><span class="n">BACKEND</span><span class="p">,</span>  <span class="c1"># Modified by experiments_pipeline.py</span>
+    <span class="n">max_attempts</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">cache_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;output/</span><span class="si">{</span><span class="n">BACKEND</span><span class="si">}</span><span class="s2">_programs_strategyqa&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">EvaluationPipeline</span><span class="p">(</span>
+    <span class="n">proof_of_thought</span><span class="o">=</span><span class="n">pot</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;output/</span><span class="si">{</span><span class="n">BACKEND</span><span class="si">}</span><span class="s2">_evaluation_strategyqa&quot;</span><span class="p">,</span>
+    <span class="n">num_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># ThreadPoolExecutor for parallel processing</span>
+<span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="s2">&quot;data/strategyQA_train.json&quot;</span><span class="p">,</span>
+    <span class="n">id_field</span><span class="o">=</span><span class="s2">&quot;qid&quot;</span><span class="p">,</span>
+    <span class="n">max_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">skip_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Resume interrupted runs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h2 id="dataset-format">Dataset Format<a class="headerlink" href="#dataset-format" title="Permanent link">&para;</a></h2>
+<p>Datasets should be formatted as JSON arrays of objects:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;question&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Can fish breathe underwater?&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;question&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Do humans have wings?&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p>You can optionally include an ID field:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;qid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample_123&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;question&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span>
+</code></pre></div>
+
+<p>Use the <code>question_field</code>, <code>answer_field</code>, and <code>id_field</code> parameters to specify custom field names.</p>
+<h2 id="saving-programs">Saving Programs<a class="headerlink" href="#saving-programs" title="Permanent link">&para;</a></h2>
+<p>To save generated programs to disk for inspection:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">result</span> <span class="o">=</span> <span class="n">pot</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="s2">&quot;Can fish breathe underwater?&quot;</span><span class="p">,</span>
+    <span class="n">save_program</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">program_path</span><span class="o">=</span><span class="s2">&quot;output/my_program.smt2&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>If you don't specify a path, the default is: <code>{cache_dir}/{auto_generated}{ext}</code></p>
+<h2 id="advanced-configuration">Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Permanent link">&para;</a></h2>
+<p>For more control over the reasoning process, you can customize various parameters:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">pot</span> <span class="o">=</span> <span class="n">ProofOfThought</span><span class="p">(</span>
+    <span class="n">llm_client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-5&quot;</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;smt2&quot;</span><span class="p">,</span>
+    <span class="n">max_attempts</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>           <span class="c1"># More retries</span>
+    <span class="n">verify_timeout</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span>     <span class="c1"># 20s timeout</span>
+    <span class="n">z3_path</span><span class="o">=</span><span class="s2">&quot;/custom/z3&quot;</span>      <span class="c1"># Custom Z3 binary</span>
+<span class="p">)</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../backends/" class="btn btn-neutral float-left" title="Backends"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../benchmarks/" class="btn btn-neutral float-right" title="Benchmarks">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2025 Debargha Ganguly</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/debarghaG/proofofthought" class="fa fa-code-fork" style="color: #fcfcfc"> debarghaG/proofofthought</a>
+        </span>
+    
+    
+      <span><a href="../backends/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../benchmarks/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
