@@ -1,5 +1,35 @@
 # ProofOfThought
 
+<!-- ICICLE metadata start -->
+Proof of Thought combines language models with Z3 to generate and verify formal reasoning. It supports an agentic SMT-LIB workflow, direct SMT-LIB and a JSON DSL.
+
+**Tags:** AI4CI, Software
+
+### License
+
+[MIT](LICENSE)
+
+## References
+
+- [Proof of Thought documentation](https://debarghag.github.io/proofofthought/)
+- [Z3](https://github.com/Z3Prover/z3)
+- [SMT-LIB](https://smt-lib.org/)
+- [Sequent-Prover models (4B, 9B, 27B)](https://huggingface.co/saccha-ai)
+- [Upstream repository](https://github.com/DebarghaG/proofofthought)
+
+## Acknowledgements
+
+*National Science Foundation (NSF) funded AI institute for Intelligent Cyberinfrastructure with Computational Learning in the Environment (ICICLE) (OAC 2112606)*
+
+## Issue reporting
+
+Report issues on [GitHub](https://github.com/DebarghaG/proofofthought/issues).
+
+---
+
+# How-To Guides
+<!-- ICICLE metadata end -->
+
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Z3](https://img.shields.io/badge/Z3-4.15+-green.svg)](https://github.com/Z3Prover/z3)

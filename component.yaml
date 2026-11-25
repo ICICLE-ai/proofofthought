@@ -1,27 +1,20 @@
-components:
-  - id: ProofOfThought
-    owner: Debargha Ganguly
-    primaryThrust: core/ModelCommons
-    name: Proof of Thought
-    status: BetaRelease
-    website: https://debarghag.github.io/proofofthought/
-    description: LLM-based reasoning using Z3 theorem proving with multiple backend support (SMT2 and JSON). Provides a high-level Python API for neurosymbolic reasoning tasks with postprocessing techniques for enhanced quality.
-    componentVersion: 1.0.1
-    targetIcicleRelease: 2023-04
-    licenseUrl: https://github.com/debarghaG/proofofthought/blob/main/LICENSE
-    publicAccess: true
-    sourceCodeUrl: https://github.com/debarghaG/proofofthought
-    releaseNotesUrl: https://github.com/debarghaG/proofofthought/releases
-    citation: "Debargha Ganguly, Srinivasan Iyengar, Vipin Chaudhary, Shivkumar Kalyanaraman. (2024) PROOF OF THOUGHT: Neurosymbolic Program Synthesis allows Robust and Interpretable Reasoning. The First Workshop on System-2 Reasoning at Scale, NeurIPS'24. https://openreview.net/forum?id=Pxx3r14j3U"
-    pypiPackage: proofofthought:1.0.1
-    codeReviewConducted: true
-    testsWritten: true
-    securityReviewConducted: false
-    biasAssessmentConducted: false
-    usageDocumentationAvailable: true
-    usageDocumentationUrl: https://debarghag.github.io/proofofthought/
-    developerDocumentationAvailable: true
-    developerDocumentationUrl: https://github.com/debarghaG/proofofthought/blob/main/README.md
-    trainingTutorialsAvailable: true
-    trainingTutorialsUrl: https://debarghag.github.io/proofofthought/
-    usageMetricsCollected: false
+- id: "ProofofThought:2.0.0"
+  owner: "Debargha Ganguly"
+  primaryThrust: "core/AI4CI"
+  name: "Proof of Thought"
+  status: "BetaRelease"
+  description: "Proof of Thought combines language models with Z3 to generate and verify formal reasoning. It supports an agentic SMT-LIB workflow, direct SMT-LIB and a JSON DSL."
+  componentVersion: "2.0.0"
+  targetIcicleRelease: None
+  licenseUrl: "https://github.com/ICICLE-ai/proofofthought?tab=MIT-1-ov-file"
+  publicAccess: true
+  sourceCodeUrl: "https://github.com/ICICLE-ai/proofofthought"
+  codeReviewConducted: true
+  testsWritten: true
+  developerDocumentationAvailable: true
+  trainingTutorialsAvailable: true
+  developerDocumentationUrl: "https://debarghag.github.io/proofofthought/"
+  website: "https://debarghag.github.io/proofofthought/"
+  releaseNotesUrl: "https://github.com/DebarghaG/proofofthought/blob/main/CHANGELOG.md"
+  pypiPackage: "proofofthought:2.0.0"
+  citation: "Ganguly, Iyengar, Chaudhary, and Kalyanaraman (2024). Proof of Thought: Neurosymbolic Program Synthesis Allows Robust and Interpretable Reasoning. https://openreview.net/forum?id=Pxx3r14j3U"
