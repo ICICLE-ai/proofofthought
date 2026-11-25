@@ -5,6 +5,8 @@ Proof of Thought combines language models with Z3 to generate and verify formal 
 
 **Tags:** AI4CI, Software
 
+> This ICICLE fork tracks [`DebarghaG/proofofthought`](https://github.com/DebarghaG/proofofthought). Send code contributions to [upstream pull requests](https://github.com/DebarghaG/proofofthought/pulls) and report bugs or feature requests in [upstream issues](https://github.com/DebarghaG/proofofthought/issues).
+
 ### License
 
 [MIT](LICENSE)
